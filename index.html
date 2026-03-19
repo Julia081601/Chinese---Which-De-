@@ -15,16 +15,14 @@
         }
         /*banner*/
         .home-banner {
-            width: 100%;          /* 寬度撐滿容器 */
-            max-width: 500px;     /* 最大寬度，避免在電腦上看太巨大 */
-            height: auto;         /* 高度自動縮放，不變形 */
-            border-radius: 15px;  /* 圓角，跟你的卡片風格統一 */
-            margin-bottom: 20px;  /* 與標題保持一點距離 */
-            display: block;       /* 讓圖片變成區塊元素 */
-            margin-left: auto;    /* 置中對齊 */
-            margin-right: auto;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 加一點點陰影更有層次感 */
-            }
+            width: 100%;           /* 寬度隨容器縮放 */
+            max-width: 450px;      /* 限制最大寬度，避免在電腦上太大 */
+            height: auto;          /* 高度自動，保持比例 */
+            display: block;        /* 區塊顯示 */
+            margin: 0 auto 20px;   /* 置中，並與下方文字保持 20px 距離 */
+            border-radius: 12px;   /* 增加一點圓角，更有設計感 */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 輕微陰影 */
+        }
 
         body {
             font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
