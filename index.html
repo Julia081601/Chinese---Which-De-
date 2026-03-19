@@ -13,6 +13,18 @@
             --card-bg: #ffffff;
             --text-color: #2c3e50;
         }
+        /*banner*/
+        .home-banner {
+            width: 100%;          /* 寬度撐滿容器 */
+            max-width: 500px;     /* 最大寬度，避免在電腦上看太巨大 */
+            height: auto;         /* 高度自動縮放，不變形 */
+            border-radius: 15px;  /* 圓角，跟你的卡片風格統一 */
+            margin-bottom: 20px;  /* 與標題保持一點距離 */
+            display: block;       /* 讓圖片變成區塊元素 */
+            margin-left: auto;    /* 置中對齊 */
+            margin-right: auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 加一點點陰影更有層次感 */
+            }
 
         body {
             font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
@@ -127,6 +139,7 @@
 <body>
 
 <div id="game-container">
+    <img src="battle.png" alt="遊戲封面圖" class="home-banner">
     <div id="home-screen" class="screen active">
         <h1>的 vs 得 練習遊戲</h1>
         <p>請選擇您的程度：</p>
