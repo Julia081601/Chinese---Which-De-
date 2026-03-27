@@ -135,7 +135,8 @@
     </style>
 </head>
 <body>
-
+<audio id="sound-correct" src="correct.mp3" preload="auto"></audio>
+<audio id="sound-wrong" src="wrong.mp3" preload="auto"></audio>
 <div id="game-container">
     
     <div id="home-screen" class="screen active">
@@ -291,31 +292,43 @@
     }
 
     function checkAnswer(userChoice) {
-        if (isTransitioning) return;
-        isTransitioning = true;
-        clearInterval(timer);
+    if (isTransitioning) return;
+    isTransitioning = true;
+    clearInterval(timer);
 
-        const correctAns = currentQuestions[currentIndex].a;
-        const btns = document.querySelectorAll('.option-btn');
+    const correctAns = currentQuestions[currentIndex].a;
+    const btns = document.querySelectorAll('.option-btn');
+    
+    // 取得音效元件
+    const correctSound = document.getElementById('sound-correct');
+    const wrongSound = document.getElementById('sound-wrong');
 
-        if (userChoice === correctAns) {
-            score.correct++;
-            if (userChoice === 'A') btns[0].classList.add('correct');
-            else btns[1].classList.add('correct');
-        } else {
-            score.wrong++;
-            if (userChoice === 'A') btns[0].classList.add('wrong');
-            else if (userChoice === 'B') btns[1].classList.add('wrong');
-            // Show correct one
-            if (correctAns === 'A') btns[0].classList.add('correct');
-            else btns[1].classList.add('correct');
-        }
-
-        setTimeout(() => {
-            currentIndex++;
-            nextQuestion();
-        }, 800); // 0.8s pause to see feedback
+    if (userChoice === correctAns) {
+        score.correct++;
+        // 播放答對音效
+        correctSound.currentTime = 0; // 重設時間以利連續播放
+        correctSound.play();
+        
+        if (userChoice === 'A') btns[0].classList.add('correct');
+        else btns[1].classList.add('correct');
+    } else {
+        score.wrong++;
+        // 播放答錯音效
+        wrongSound.currentTime = 0;
+        wrongSound.play();
+        
+        if (userChoice === 'A') btns[0].classList.add('wrong');
+        else if (userChoice === 'B') btns[1].classList.add('wrong');
+        
+        if (correctAns === 'A') btns[0].classList.add('correct');
+        else btns[1].classList.add('correct');
     }
+
+    setTimeout(() => {
+        currentIndex++;
+        nextQuestion();
+    }, 800); 
+}
 
     function showResult() {
         showScreen('result-screen');
