@@ -291,35 +291,32 @@
         }, 100);
     }
 
-    function checkAnswer(userChoice) {
+   function checkAnswer(userChoice) {
     if (isTransitioning) return;
     isTransitioning = true;
     clearInterval(timer);
 
     const correctAns = currentQuestions[currentIndex].a;
     const btns = document.querySelectorAll('.option-btn');
-    
-    // 取得音效元件
     const correctSound = document.getElementById('sound-correct');
     const wrongSound = document.getElementById('sound-wrong');
 
     if (userChoice === correctAns) {
         score.correct++;
-        // 播放答對音效
-        correctSound.currentTime = 0; // 重設時間以利連續播放
+        correctSound.currentTime = 0;
         correctSound.play();
-        
         if (userChoice === 'A') btns[0].classList.add('correct');
         else btns[1].classList.add('correct');
     } else {
         score.wrong++;
-        // 播放答錯音效
         wrongSound.currentTime = 0;
         wrongSound.play();
         
+        // 修改這裡：只要不是正確答案（包含選錯或 null），就標示錯誤紅框
         if (userChoice === 'A') btns[0].classList.add('wrong');
         else if (userChoice === 'B') btns[1].classList.add('wrong');
         
+        // 永遠顯示正確答案綠框
         if (correctAns === 'A') btns[0].classList.add('correct');
         else btns[1].classList.add('correct');
     }
